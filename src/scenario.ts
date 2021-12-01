@@ -45,6 +45,14 @@ const userScenario = createUserScenario<ScenarioRequest>({
         match: intent('/Штраф за пропуск', {confidence: 0.4}),
         handle: setDecreasingPointsHandler
     },
+    NavigationPlay: {
+        match: intent('/Игра', {confidence: 0.4}),
+        handle: ({res}) => {
+            res.appendCommand<ActionType>({
+                type: 'NAVIGATION_PLAY'
+            })
+        }
+    },
     NavigationNext: {
         match: intent('/Дальше', {confidence: 0.4}),
         handle: ({res}) => {
