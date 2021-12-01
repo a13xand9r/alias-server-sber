@@ -1,69 +1,180 @@
 {
   "intents": {
-    "/Да": {
+    "/Дальше": {
       "matchers": [
         {
           "type": "phrase",
-          "rule": "Да"
+          "rule": "дальше"
         },
         {
           "type": "phrase",
-          "rule": "верно"
-        },
-        {
-          "type": "phrase",
-          "rule": "правильно"
+          "rule": "далее"
         }
       ],
       "variables": {}
     },
-    "/Нет": {
+    "/Добавить команду": {
       "matchers": [
         {
           "type": "phrase",
-          "rule": "нет"
+          "rule": "Добавить команду"
         },
         {
           "type": "phrase",
-          "rule": "неверно"
-        },
-        {
-          "type": "phrase",
-          "rule": "неправильно"
+          "rule": "добавить"
         }
       ],
       "variables": {}
     },
-    "/Позвони": {
+    "/Настройки": {
       "matchers": [
         {
           "type": "phrase",
-          "rule": "позвони еще раз"
+          "rule": "настройки"
         }
       ],
       "variables": {}
     },
-    "/Другой номер": {
+    "/Таймер": {
       "matchers": [
         {
           "type": "phrase",
-          "rule": "другой номер"
+          "rule": "@duckling.number секунд"
         },
         {
           "type": "phrase",
-          "rule": "другой телефон"
+          "rule": "время раунда @duckling.number секунд"
+        }
+      ],
+      "variables": {
+        "seconds": {
+          "required": true,
+          "questions": []
+        }
+      }
+    },
+    "/Штраф за пропуск": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "@штраф штраф за пропуск"
+        }
+      ],
+      "variables": {
+        "value": {
+          "required": true,
+          "questions": []
+        }
+      }
+    },
+    "/Количество слов": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "@duckling.number слов для победы"
+        }
+      ],
+      "variables": {
+        "wordsToWin": {
+          "required": true,
+          "questions": []
+        }
+      }
+    },
+    "/Счет": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "какой счет"
         },
         {
           "type": "phrase",
-          "rule": "поменяй телефон"
+          "rule": "текущий счет"
+        }
+      ],
+      "variables": {}
+    },
+    "/Помощь": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "помощь"
         },
         {
           "type": "phrase",
-          "rule": "поменяй номер"
+          "rule": "справка"
+        }
+      ],
+      "variables": {}
+    },
+    "/Понятно": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "понятно"
+        },
+        {
+          "type": "phrase",
+          "rule": "назад"
+        }
+      ],
+      "variables": {}
+    },
+    "/Правила": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "правила"
+        }
+      ],
+      "variables": {}
+    },
+    "/Назад": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "назад"
+        }
+      ],
+      "variables": {}
+    },
+    "/Игра": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "новая игра"
+        },
+        {
+          "type": "phrase",
+          "rule": "поехали"
+        },
+        {
+          "type": "phrase",
+          "rule": "играть"
         }
       ],
       "variables": {}
     }
   },
-  "entities": {}
+  "entities": {
+    "штраф": {
+      "noMorph": false,
+      "matchers": [
+        {
+          "type": "synonyms",
+          "rule": [
+            "включи"
+          ],
+          "value": "{isDecreasing: true}"
+        },
+        {
+          "type": "synonyms",
+          "rule": [
+            "выключи"
+          ],
+          "value": "{isDecreasing: false}"
+        }
+      ]
+    }
+  }
 }
