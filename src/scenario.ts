@@ -69,14 +69,6 @@ const userScenario = createUserScenario<ScenarioRequest>({
             })
         }
     },
-    NavigationPlay: {
-        match: intent('/Дальше', {confidence: 0.4}),
-        handle: ({res}) => {
-            res.appendCommand<ActionType>({
-                type: 'NAVIGATION_SETTINGS'
-            })
-        }
-    },
     NavigationBack: {
         match: req => intent('/Понятно', {confidence: 0.4})(req) || intent('/Назад', {confidence: 0.4})(req),
         handle: ({res}) => {
