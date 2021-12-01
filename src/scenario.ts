@@ -62,7 +62,7 @@ const userScenario = createUserScenario<ScenarioRequest>({
         }
     },
     NavigationSettings: {
-        match: intent('/Дальше', {confidence: 0.4}),
+        match: intent('/Настройки', {confidence: 0.4}),
         handle: ({res}) => {
             res.appendCommand<ActionType>({
                 type: 'NAVIGATION_SETTINGS'
