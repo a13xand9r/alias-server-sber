@@ -23,7 +23,9 @@ export const setTimerHandler: ScenarioHandler = ({ req, res }) => {
     if (Number(seconds)) {
         res.appendCommand<ActionType>({
             type: 'SET_TIMER_LIMIT',
-            limit: Number(seconds)
+            payload: {
+                limit: Number(seconds)
+            }
         })
     }
 }
@@ -34,7 +36,9 @@ export const setWordsLimitHandler: ScenarioHandler = ({req, res}) => {
     if (Number(wordsToWin)) {
         res.appendCommand<ActionType>({
             type: 'SET_WORDS_COUNT_TO_WIN',
-            count: Number(wordsToWin)
+            payload: {
+                count: Number(wordsToWin)
+            }
         })
     }
 }
@@ -45,7 +49,9 @@ export const setDecreasingPointsHandler: ScenarioHandler = ({req, res}) => {
     if (isDecreasing) {
         res.appendCommand<ActionType>({
             type: 'SET_DECREASING_POINTS',
-            isDecreasing: isDecreasing === 'true' ? true : false
+            payload: {
+                isDecreasing: isDecreasing === 'true' ? true : false
+            }
         })
     }
 }

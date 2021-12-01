@@ -29,19 +29,27 @@ export type ActionType =
     } |
     {
         type: 'DELETE_PLAYING_TEAM'
-        id: string
+        payload: {
+            id: string
+        }
     } |
     {
         type: 'SET_TIMER_LIMIT'
-        limit: number
+        payload: {
+            limit: number
+        }
     } |
     {
         type: 'SET_WORDS_COUNT_TO_WIN'
-        count: number
+        payload: {
+            count: number
+        }
     } |
     {
         type: 'SET_DECREASING_POINTS'
-        isDecreasing: boolean
+        payload: {
+            isDecreasing: boolean
+        }
     } |
     {
         type: 'NAVIGATION_NEXT'
