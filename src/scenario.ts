@@ -23,7 +23,10 @@ const { intent, match } = createMatchers<ScenarioRequest, typeof intents>()
 
 const userScenario = createUserScenario<ScenarioRequest>({
     AddTeam: {
-        match: intent('/Добавить команду', {confidence: 0.4}),
+        match: req => {
+            console.log(req.inference?.variants)
+            return intent('/Добавить команду', {confidence: 0.4})(req)
+        },
         handle: ({req, res}) => {
             res.appendCommand<ActionType>({
                 type: 'ADD_TEAM'
