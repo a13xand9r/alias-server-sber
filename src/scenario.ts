@@ -19,7 +19,7 @@ require('dotenv').config()
 
 const storage = new SaluteMemoryStorage()
 const intents = createIntents(model.intents)
-const { intent, match } = createMatchers<ScenarioRequest, typeof intents>()
+const { intent, match, action } = createMatchers<ScenarioRequest, typeof intents>()
 
 const userScenario = createUserScenario<ScenarioRequest>({
     AddTeam: {
@@ -85,6 +85,10 @@ const userScenario = createUserScenario<ScenarioRequest>({
     },
     CurrentScore: {
         match: intent('/Счет', {confidence: 0.4}),
+        handle: currentScoreHandler
+    },
+    HelloMessage: {
+        match: action('HELLO_MESSAGE'),
         handle: currentScoreHandler
     },
 })

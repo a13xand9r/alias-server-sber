@@ -59,3 +59,14 @@ export const setDecreasingPointsHandler: ScenarioHandler = ({req, res}) => {
 export const currentScoreHandler: ScenarioHandler = ({req, res}) => {
     res.setPronounceText(`Текущий счёт: ${req.state?.teams?.map(team => `${team.name}, ${team.score}.`)} Для победы нужно набрать ${req.state?.wordsCountToWin} очков`)
 }
+
+export const helloMessageHandler: ScenarioHandler = ({ req, res }) => {
+    const { isFirstLaunchOnDevice } = req.serverAction?.payload as { isFirstLaunchOnDevice: boolean }
+
+    const keyset = req.i18n(dictionary)
+    if (isFirstLaunchOnDevice === true || isFirstLaunchOnDevice === undefined){
+        res.setPronounceText(keyset('Первый привет'))
+    } else {
+        res.setPronounceText(keyset('Не первый привет'))
+    }
+}
