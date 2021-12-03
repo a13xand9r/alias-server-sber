@@ -5,9 +5,29 @@ import {
     SaluteRequestVariable
 } from '@salutejs/scenario'
 
+export type Team = {
+    name: string
+    id: string
+    score: number
+}
+
+export type RoundWord = {
+    word: string
+    isAnswered: boolean
+}
 
 export interface ScenarioAppState extends AppState {
-
+    teams?: Team[],
+    playingTeams?: Team[],
+    words?: string[],
+    currentTeam?: null | Team,
+    winningTeam?: null | Team,
+    isDecreasing?: boolean,
+    timerLimit?: number,
+    isOverWordsLimit?: boolean,
+    wordsCountToWin?: number,
+    roundWords?: RoundWord[],
+    roundNumber?: number
 }
 
 export interface ScenarioIntentsVariables extends SaluteRequestVariable {

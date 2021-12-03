@@ -13,7 +13,7 @@ import {
     SaluteRequest
 } from '@salutejs/scenario'
 import { SaluteMemoryStorage } from '@salutejs/storage-adapter-memory'
-import { noMatchHandler, runAppHandler, setDecreasingPointsHandler, setTimerHandler, setWordsLimitHandler } from './handlers'
+import { currentScoreHandler, noMatchHandler, runAppHandler, setDecreasingPointsHandler, setTimerHandler, setWordsLimitHandler } from './handlers'
 import model from './intents.json'
 require('dotenv').config()
 
@@ -23,10 +23,7 @@ const { intent, match } = createMatchers<ScenarioRequest, typeof intents>()
 
 const userScenario = createUserScenario<ScenarioRequest>({
     AddTeam: {
-        match: req => {
-            console.log(req.inference?.variants)
-            return intent('/Добавить команду', {confidence: 0.4})(req)
-        },
+        match:  intent('/Добавить команду', {confidence: 0.4}),
         handle: ({req, res}) => {
             res.appendCommand<ActionType>({
                 type: 'ADD_TEAM'
@@ -46,7 +43,7 @@ const userScenario = createUserScenario<ScenarioRequest>({
         handle: setDecreasingPointsHandler
     },
     NavigationPlay: {
-        match: intent('/Игра', {confidence: 0.4}),
+        match: intent('/Игра', {confidence: 0.7}),
         handle: ({res}) => {
             res.appendCommand<ActionType>({
                 type: 'NAVIGATION_PLAY'
@@ -63,7 +60,8 @@ const userScenario = createUserScenario<ScenarioRequest>({
     },
     NavigationSettings: {
         match: intent('/Настройки', {confidence: 0.4}),
-        handle: ({res}) => {
+        handle: ({req, res}) => {
+            console.log(req.state)
             res.appendCommand<ActionType>({
                 type: 'NAVIGATION_SETTINGS'
             })
@@ -84,6 +82,10 @@ const userScenario = createUserScenario<ScenarioRequest>({
                 type: 'NAVIGATION_RULES'
             })
         }
+    },
+    CurrentScore: {
+        match: intent('/Счет', {confidence: 0.4}),
+        handle: currentScoreHandler
     },
 })
 

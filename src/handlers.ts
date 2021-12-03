@@ -55,3 +55,7 @@ export const setDecreasingPointsHandler: ScenarioHandler = ({req, res}) => {
         })
     }
 }
+
+export const currentScoreHandler: ScenarioHandler = ({req, res}) => {
+    res.setPronounceText(`Текущий счёт: ${req.state?.teams?.map(team => `${team.name}, ${team.score}.`)} Для победы нужно набрать ${req.state?.wordsCountToWin} очков`)
+}
