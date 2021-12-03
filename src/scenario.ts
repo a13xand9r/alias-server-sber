@@ -13,7 +13,7 @@ import {
     SaluteRequest
 } from '@salutejs/scenario'
 import { SaluteMemoryStorage } from '@salutejs/storage-adapter-memory'
-import { currentScoreHandler, noMatchHandler, runAppHandler, setDecreasingPointsHandler, setTimerHandler, setWordsLimitHandler } from './handlers'
+import { currentScoreHandler, helloMessageHandler, noMatchHandler, runAppHandler, setDecreasingPointsHandler, setTimerHandler, setWordsLimitHandler } from './handlers'
 import model from './intents.json'
 require('dotenv').config()
 
@@ -89,7 +89,7 @@ const userScenario = createUserScenario<ScenarioRequest>({
     },
     HelloMessage: {
         match: action('HELLO_MESSAGE'),
-        handle: currentScoreHandler
+        handle: helloMessageHandler
     },
 })
 
