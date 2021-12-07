@@ -13,7 +13,7 @@ import {
     SaluteRequest
 } from '@salutejs/scenario'
 import { SaluteMemoryStorage } from '@salutejs/storage-adapter-memory'
-import { currentScoreHandler, helloMessageHandler, noMatchHandler, runAppHandler, setDecreasingPointsHandler, setTimerHandler, setWordsLimitHandler } from './handlers'
+import { currentScoreHandler, helloMessageHandler, helpHandler, noMatchHandler, runAppHandler, setComplexityPointsHandler, setDecreasingPointsHandler, setTimerHandler, setWordsLimitHandler } from './handlers'
 import model from './intents.json'
 require('dotenv').config()
 
@@ -41,6 +41,14 @@ const userScenario = createUserScenario<ScenarioRequest>({
     SetDecreasing: {
         match: intent('/Штраф за пропуск', {confidence: 0.4}),
         handle: setDecreasingPointsHandler
+    },
+    SetComplexity: {
+        match: intent('/Набор слов', {confidence: 0.4}),
+        handle: setComplexityPointsHandler
+    },
+    HelpHandler: {
+        match: intent('/Помощь', {confidence: 0.5}),
+        handle: helpHandler
     },
     NavigationPlay: {
         match: intent('/Игра', {confidence: 0.7}),

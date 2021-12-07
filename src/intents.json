@@ -53,34 +53,6 @@
         }
       }
     },
-    "/Штраф за пропуск": {
-      "matchers": [
-        {
-          "type": "phrase",
-          "rule": "@штраф штраф за пропуск"
-        }
-      ],
-      "variables": {
-        "value": {
-          "required": true,
-          "questions": []
-        }
-      }
-    },
-    "/Количество слов": {
-      "matchers": [
-        {
-          "type": "phrase",
-          "rule": "@duckling.number слов для победы"
-        }
-      ],
-      "variables": {
-        "wordsToWin": {
-          "required": true,
-          "questions": []
-        }
-      }
-    },
     "/Счет": {
       "matchers": [
         {
@@ -90,19 +62,6 @@
         {
           "type": "phrase",
           "rule": "текущий счет"
-        }
-      ],
-      "variables": {}
-    },
-    "/Помощь": {
-      "matchers": [
-        {
-          "type": "phrase",
-          "rule": "помощь"
-        },
-        {
-          "type": "phrase",
-          "rule": "справка"
         }
       ],
       "variables": {}
@@ -129,6 +88,28 @@
       ],
       "variables": {}
     },
+    "/Набор слов": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "@сложность набор слов"
+        },
+        {
+          "type": "phrase",
+          "rule": "набор слов @сложность"
+        },
+        {
+          "type": "phrase",
+          "rule": "@сложность"
+        }
+      ],
+      "variables": {
+        "value": {
+          "required": true,
+          "questions": []
+        }
+      }
+    },
     "/Назад": {
       "matchers": [
         {
@@ -154,9 +135,88 @@
         }
       ],
       "variables": {}
+    },
+    "/Штраф за пропуск": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "@штраф штраф за пропуск"
+        },
+        {
+          "type": "phrase",
+          "rule": "штраф за пропуск"
+        }
+      ],
+      "variables": {
+        "value": {
+          "required": true,
+          "questions": []
+        }
+      }
+    },
+    "/Количество слов": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "@duckling.number слов для победы"
+        },
+        {
+          "type": "phrase",
+          "rule": "количество слов для достижения победы @duckling.number"
+        }
+      ],
+      "variables": {
+        "wordsToWin": {
+          "required": true,
+          "questions": []
+        }
+      }
+    },
+    "/Помощь": {
+      "matchers": [
+        {
+          "type": "phrase",
+          "rule": "помощь"
+        },
+        {
+          "type": "phrase",
+          "rule": "справка"
+        },
+        {
+          "type": "pattern",
+          "rule": "как играть[?]"
+        }
+      ],
+      "variables": {}
     }
   },
   "entities": {
+    "сложность": {
+      "noMorph": false,
+      "matchers": [
+        {
+          "type": "synonyms",
+          "rule": [
+            "легко"
+          ],
+          "value": "{\"complexity\": \"low\"}"
+        },
+        {
+          "type": "synonyms",
+          "rule": [
+            "нормально"
+          ],
+          "value": "{\"complexity\": \"normal\"}"
+        },
+        {
+          "type": "synonyms",
+          "rule": [
+            "сложно"
+          ],
+          "value": "{\"complexity\": \"high\"}"
+        }
+      ]
+    },
     "штраф": {
       "noMorph": false,
       "matchers": [
@@ -165,14 +225,14 @@
           "rule": [
             "включи"
           ],
-          "value": "{isDecreasing: true}"
+          "value": "{\n  \"isDecreasing\": true\n}"
         },
         {
           "type": "synonyms",
           "rule": [
             "выключи"
           ],
-          "value": "{isDecreasing: false}"
+          "value": "{\n  \"isDecreasing\": false\n}"
         }
       ]
     }

@@ -31,9 +31,9 @@ export interface ScenarioAppState extends AppState {
 }
 
 export interface ScenarioIntentsVariables extends SaluteRequestVariable {
-    isDecreasing?: string;
     seconds?: string;
     wordsToWin?: string;
+    value?: string;
 }
 
 export interface ScenarioSession extends Record<string, unknown>{
@@ -65,6 +65,12 @@ export type ActionType =
         type: 'SET_WORDS_COUNT_TO_WIN'
         payload: {
             count: number
+        }
+    } |
+    {
+        type: 'SET_WORDS_COMPLEXITY'
+        payload: {
+            complexity: string
         }
     } |
     {
