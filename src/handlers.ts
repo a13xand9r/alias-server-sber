@@ -88,9 +88,6 @@ export const setComplexityPointsHandler: ScenarioHandler = ({req, res}) => {
 
     const { complexity } = JSON.parse(value)
 
-    // console.log(req.variables)
-    console.log(complexity)
-
     if (complexity) {
         res.appendCommand<ActionType>({
             type: 'SET_WORDS_COMPLEXITY',
