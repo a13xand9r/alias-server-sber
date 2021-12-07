@@ -73,7 +73,7 @@ export const setDecreasingPointsHandler: ScenarioHandler = ({req, res}) => {
         res.appendCommand<ActionType>({
             type: 'SET_DECREASING_POINTS',
             payload: {
-                isDecreasing: isDecreasing === 'true' ? true : false
+                isDecreasing: isDecreasing
             }
         })
         res.setPronounceText('Готово')
