@@ -1,5 +1,4 @@
 import { WordsComplexity } from './../types';
-import { general } from './../words/general';
 import { Router } from 'express'
 import axios from 'axios';
 
